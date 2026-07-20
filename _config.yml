@@ -14,9 +14,9 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Minstar's Blog # the main title
+title: Minstaar # the main title
 
-tagline: 논문 리뷰 # it will display as the subtitle
+tagline: Minseong Park # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   논문을 한글로 번역하고 리뷰하는 블로그입니다.
