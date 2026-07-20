@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: Minstar's Blog # the main title
 
-tagline: 논문 리뷰와 번역 # it will display as the subtitle
+tagline: 논문 리뷰 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   논문을 한글로 번역하고 리뷰하는 블로그입니다.
@@ -98,7 +98,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/avatar.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
