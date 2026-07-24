@@ -200,13 +200,11 @@ Explicit MPM은 GPU에서 고도로 최적화 가능하며, 1/24초 frame durati
 각 demo scene이 어떤 constitutive model로 simulation되는지는 아래와 같다.
 
 ![Table2](/assets/img/physgaussian/table2_model_settings.png)
-
 _Table 2. Model Settings. 각 장면에 적용한 constitutive(물리) 모델._
 
 constitutive model에서 쓰이는 탄성 파라미터의 정의와 $E, \nu$로부터의 관계는 다음과 같다.
 
 ![Table3](/assets/img/physgaussian/table3_material_params.png)
-
 _Table 3. Material Parameters. 탄성 파라미터 표기와 $E$·$\nu$로부터 유도되는 관계._
 
 ### Lattice Deformation Benchmarks
@@ -221,7 +219,6 @@ _Fig 4. Comparisons. 각 benchmark 케이스마다 한 test 시점을 선택해 
 NeRF-Editing은 scene representation으로 NeuS를 써서 surface reconstruction에는 적합하나 rendering 품질은 3DGS보다 낮고, deformation이 추출한 surface mesh와 dilated cage mesh의 정밀도에 크게 의존한다. Deforming-NeRF는 깨끗한 rendering을 주지만 모든 cage vertex에서 smooth interpolation을 하므로 fine local detail이 사라지고 lattice deformation을 정확히 맞추지 못한다. PAC-NeRF는 단순 물체·텍스처의 system identification용이라 rendering fidelity가 낮다. 본 방법은 각 lattice cell의 zero-order(deformation map)와 first-order(deformation gradient) 정보를 모두 활용하여 모든 케이스에서 최고 성능이다(Table 1).
 
 ![Table1](/assets/img/physgaussian/table1_lattice.png)
-
 _Table 1. Lattice deformation benchmark의 PSNR(높을수록 좋음). Ours가 모든 케이스에서 우위._
 
 Ablation Studies. Gaussian kernel과 spherical harmonics kinematics의 필요성을 검증한다. Fixed Covariance(kernel을 translation만), Rigid Covariance(rigid transformation만), Fixed Harmonics(SH orientation을 회전하지 않음)와 비교한다.
