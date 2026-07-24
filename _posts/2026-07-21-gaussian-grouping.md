@@ -88,7 +88,7 @@ $J$는 3D-2D projection의 affine approximation에 대한 Jacobian, $W$는 world
 
 Grouping loss $\mathcal{L}_{\text{id}}$는 두 항으로 구성된다.
 
-2D Identity Loss: mask label이 2D이므로, 렌더링된 $E_{\text{id}}$에 linear layer $f$를 붙여 차원을 $K$로 되돌린 뒤 $\text{softmax}(f(E_{\text{id}}))$로 identity를 분류하고, $K$개 카테고리에 대한 standard cross-entropy $\mathcal{L}_{\text{2d}}$를 적용한다.
+2D Identity Loss: mask label이 2D이므로, 렌더링된 $$E_{\text{id}}$$에 linear layer $$f$$를 붙여 차원을 $$K$$로 되돌린 뒤 $$\text{softmax}(f(E_{\text{id}}))$$로 identity를 분류하고, $$K$$개 카테고리에 대한 standard cross-entropy $$\mathcal{L}_{\text{2d}}$$를 적용한다.
 
 3D Regularization Loss: 2D supervision은 간접적이라, object 내부나 크게 가려진 Gaussian은 충분히 학습되지 않는다. 이를 보완하기 위해, 각 Gaussian의 identity 분포가 3D 상에서 가장 가까운 $k$개 이웃과 가까워지도록 하는 KL divergence loss를 도입한다($F$는 linear layer $f$ 뒤의 softmax).
 

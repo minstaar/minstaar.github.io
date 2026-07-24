@@ -116,7 +116,7 @@ $$
 
 ### Camera Motion Trajectory Modeling
 
-식 (7)을 풀려면 각 virtual sharp image $\mathbf{C}_i$가 필요하고, $\mathbf{C}_i$는 특정 pose $\mathbf{T}_i$에서 렌더링할 수 있다. 노출 시간이 짧다고 가정하면, 노출 시작 pose $\mathbf{T}_{\text{start}}$와 종료 pose $\mathbf{T}_{\text{end}}$ 두 개만으로 trajectory를 표현하고 그 사이를 보간할 수 있다. 시각 $t$($0 \le t \le \tau$)의 virtual camera pose는 SE(3) 공간에서 linear interpolation으로 표현된다.
+식 (7)을 풀려면 각 virtual sharp image $$\mathbf{C}_i$$가 필요하고, $$\mathbf{C}_i$$는 특정 pose $$\mathbf{T}_i$$에서 렌더링할 수 있다. 노출 시간이 짧다고 가정하면, 노출 시작 pose $$\mathbf{T}_{\text{start}}$$와 종료 pose $$\mathbf{T}_{\text{end}}$$ 두 개만으로 trajectory를 표현하고 그 사이를 보간할 수 있다. 시각 $$t$$($$0 \le t \le \tau$$)의 virtual camera pose는 SE(3) 공간에서 linear interpolation으로 표현된다.
 
 $$
 \begin{equation}
@@ -124,11 +124,11 @@ $$
 \end{equation}
 $$
 
-$\frac{t}{\tau}$는 $\frac{i}{n-1}$로 discretize된다($i$번째 virtual sharp image). $\mathbf{T}_i$는 $\mathbf{T}_{\text{start}}$와 $\mathbf{T}_{\text{end}}$ 모두에 대해 미분 가능하다. BAD-Gaussians의 목표는 각 프레임의 $\mathbf{T}_{\text{start}}$, $\mathbf{T}_{\text{end}}$와 Gaussian 파라미터 $G_\theta$를 함께 추정하는 것이다.
+$$\frac{t}{\tau}$$는 $$\frac{i}{n-1}$$로 discretize된다($$i$$번째 virtual sharp image). $$\mathbf{T}_i$$는 $$\mathbf{T}_{\text{start}}$$와 $$\mathbf{T}_{\text{end}}$$ 모두에 대해 미분 가능하다. BAD-Gaussians의 목표는 각 프레임의 $$\mathbf{T}_{\text{start}}$$, $$\mathbf{T}_{\text{end}}$$와 Gaussian 파라미터 $$G_\theta$$를 함께 추정하는 것이다.
 
 ### Loss Function
 
-$K$개의 blurry image로부터 Gaussian 파라미터 $\theta$($\mu, \Sigma, o, c$)와 각 이미지의 camera trajectory($\mathbf{T}_{\text{start}}, \mathbf{T}_{\text{end}}$)를 함께 추정한다. 합성 blurry image $\mathbf{B}_k$와 실제 blurry image $\mathbf{B}_k^{gt}$ 사이의 L1 loss와 D-SSIM term을 최소화한다.
+$$K$$개의 blurry image로부터 Gaussian 파라미터 $$\theta$$($$\mu, \Sigma, o, c$$)와 각 이미지의 camera trajectory($$\mathbf{T}_{\text{start}}, \mathbf{T}_{\text{end}}$$)를 함께 추정한다. 합성 blurry image $$\mathbf{B}_k$$와 실제 blurry image $$\mathbf{B}_k^{gt}$$ 사이의 L1 loss와 D-SSIM term을 최소화한다.
 
 $$
 \begin{equation}
@@ -150,7 +150,7 @@ $$
 \end{equation}
 $$
 
-$\mathbf{T}_{\text{start}}$와 $\mathbf{T}_{\text{end}}$는 각각 SE(3)의 Lie algebra(6D vector)로 파라미터화된다. Gaussian의 pose에 대한 Jacobian $\frac{\partial \theta}{\partial \mathbf{T}}$에서, color $c$와 opacity $o$는 pose와 독립이고 효율성을 위해 $\frac{\partial \Sigma'}{\partial \mathbf{T}_i}$는 무시(GS-SLAM 방식)하여, 사실상 mean position $\mu$의 pose에 대한 Jacobian만 해석적으로 계산한다.
+$$\mathbf{T}_{\text{start}}$$와 $$\mathbf{T}_{\text{end}}$$는 각각 SE(3)의 Lie algebra(6D vector)로 파라미터화된다. Gaussian의 pose에 대한 Jacobian $$\frac{\partial \theta}{\partial \mathbf{T}}$$에서, color $$c$$와 opacity $$o$$는 pose와 독립이고 효율성을 위해 $$\frac{\partial \Sigma'}{\partial \mathbf{T}_i}$$는 무시(GS-SLAM 방식)하여, 사실상 mean position $$\mu$$의 pose에 대한 Jacobian만 해석적으로 계산한다.
 
 ## Experiments
 
