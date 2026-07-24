@@ -199,30 +199,13 @@ Explicit MPM은 GPU에서 고도로 최적화 가능하며, 1/24초 frame durati
 
 각 demo scene이 어떤 constitutive model로 simulation되는지는 아래와 같다.
 
-| Scene | Figure | Constitutive Model |
-|---|---|---|
-| Vasedeck | Fig 1 | Fixed corotated |
-| Ficus | Fig 2 | Fixed corotated |
-| Fox | Fig 3 | Fixed corotated |
-| Plane | Fig 3 | von Mises |
-| Toast | Fig 3 | Fixed corotated |
-| Ruins | Fig 3 | Drucker-Prager |
-| Jam | Fig 3 | Herschel-Bulkley |
-| Sofa Suite | Fig 3 | Fixed corotated |
-| Microphone | Fig 7 | Neo-Hookean |
-| Bread / Cake / Can / Wolf | Fig 9 | Fixed corotated / Herschel-Bulkley / von Mises / Drucker-Prager |
+![Table2](/assets/img/physgaussian/table2_model_settings.png)
 
 _Table 2. Model Settings. 각 장면에 적용한 constitutive(물리) 모델._
 
 constitutive model에서 쓰이는 탄성 파라미터의 정의와 $E, \nu$로부터의 관계는 다음과 같다.
 
-| 표기 | 의미 | 관계 |
-|---|---|---|
-| $E$ | Young's modulus (강성) | — |
-| $\nu$ | Poisson's ratio | — |
-| $\mu$ | Shear modulus | $\mu = \frac{E}{2(1+\nu)}$ |
-| $\lambda$ | Lamé modulus | $\lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}$ |
-| $\kappa$ | Bulk modulus | $\kappa = \frac{E}{3(1-2\nu)}$ |
+![Table3](/assets/img/physgaussian/table3_material_params.png)
 
 _Table 3. Material Parameters. 탄성 파라미터 표기와 $E$·$\nu$로부터 유도되는 관계._
 
@@ -237,15 +220,7 @@ _Fig 4. Comparisons. 각 benchmark 케이스마다 한 test 시점을 선택해 
 
 NeRF-Editing은 scene representation으로 NeuS를 써서 surface reconstruction에는 적합하나 rendering 품질은 3DGS보다 낮고, deformation이 추출한 surface mesh와 dilated cage mesh의 정밀도에 크게 의존한다. Deforming-NeRF는 깨끗한 rendering을 주지만 모든 cage vertex에서 smooth interpolation을 하므로 fine local detail이 사라지고 lattice deformation을 정확히 맞추지 못한다. PAC-NeRF는 단순 물체·텍스처의 system identification용이라 rendering fidelity가 낮다. 본 방법은 각 lattice cell의 zero-order(deformation map)와 first-order(deformation gradient) 정보를 모두 활용하여 모든 케이스에서 최고 성능이다(Table 1).
 
-| Test Case | Wolf (Bend) | Wolf (Twist) | Stool (Bend) | Stool (Twist) | Plant (Bend) | Plant (Twist) |
-|---|---|---|---|---|---|---|
-| NeRF-Editing | 26.74 | 24.37 | 25.00 | 21.10 | 19.85 | 19.08 |
-| Deforming-NeRF | 21.65 | 21.72 | 22.32 | 21.16 | 17.90 | 18.63 |
-| PAC-NeRF | 26.91 | 25.27 | 21.83 | 21.26 | 18.50 | 17.78 |
-| Fixed Covariance | 26.77 | 26.02 | 29.94 | 25.31 | 23.95 | 23.09 |
-| Rigid Covariance | 26.84 | 26.16 | 30.28 | 25.70 | 24.09 | 23.53 |
-| Fixed Harmonics | 26.83 | 26.02 | 30.87 | 25.75 | 25.09 | 23.69 |
-| **Ours** | **26.96** | **26.46** | **31.15** | **26.15** | **25.81** | **23.87** |
+![Table1](/assets/img/physgaussian/table1_lattice.png)
 
 _Table 1. Lattice deformation benchmark의 PSNR(높을수록 좋음). Ours가 모든 케이스에서 우위._
 

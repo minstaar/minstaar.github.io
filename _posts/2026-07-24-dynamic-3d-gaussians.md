@@ -180,29 +180,7 @@ Novel-view synthesis는 표준 PSNR, SSIM, LPIPS 로 평가한다. 2D long-term 
 
 ### PanopticSports Results
 
-| Task | Metric | Method | Juggle | Boxes | Softball | Tennis | Football | Basketball | **Mean** |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| View Synthesis | PSNR↑ | 3GS-O | 28.19 | 28.74 | 28.77 | 28.03 | 28.49 | 27.02 | 28.21 |
-| | | **Ours** | 29.48 | 29.46 | 28.43 | 28.11 | 28.49 | 28.22 | **28.7** |
-| | SSIM↑ | 3GS-O | 0.91 | 0.91 | 0.91 | 0.90 | 0.90 | 0.89 | 0.90 |
-| | | **Ours** | 0.92 | 0.91 | 0.91 | 0.91 | 0.91 | 0.91 | **0.91** |
-| | LPIPS↓ | 3GS-O | 0.15 | 0.15 | 0.14 | 0.16 | 0.16 | 0.18 | **0.16** |
-| | | Ours | 0.15 | 0.17 | 0.19 | 0.17 | 0.19 | 0.18 | 0.17 |
-| 3D Tracking | 3D MTE↓ | 3GS-O | 32.81 | 39.95 | 64.94 | 75.54 | 45.57 | 76.71 | 55.9 |
-| | | **Ours** | 1.90 | 1.97 | 2.02 | 2.33 | 2.45 | 2.56 | **2.21** |
-| | 3D δ↑ | 3GS-O | 13.6 | 3.5 | 5.9 | 4.2 | 9.8 | 3.5 | 6.8 |
-| | | **Ours** | 77.2 | 75.9 | 70.3 | 69.0 | 69.4 | 66.3 | **71.4** |
-| | 3D Surv↑ | 3GS-O | 56.3 | 60.8 | 37.2 | 16.9 | 59.6 | 31.9 | 43.8 |
-| | | **Ours** | 100 | 100 | 100 | 100 | 100 | 100 | **100** |
-| 2D Tracking | 2D MTE↓ | 3GS-O | 23.86 | 29.88 | 51.6 | 58.15 | 35.15 | 64.29 | 43.8 |
-| | | PIPs | 5.76 | 8.42 | 13.3 | 21.0 | 23.2 | 22.6 | 15.7 |
-| | | **Ours** | 1.54 | 1.42 | 1.69 | 1.36 | 1.48 | 1.93 | **1.57** |
-| | 2D δ↑ | 3GS-O | 17.1 | 10.5 | 8.9 | 6.5 | 15.0 | 7.2 | 10.9 |
-| | | PIPs | 55.9 | 39.5 | 37.0 | 28.4 | 43.5 | 33.2 | 39.6 |
-| | | **Ours** | 80.4 | 82.5 | 77.3 | 80.2 | 79.7 | 73.9 | **78.4** |
-| | 2D Surv↑ | 3GS-O | 71.3 | 74.4 | 42.7 | 23.0 | 69.6 | 47.1 | 54.7 |
-| | | PIPs | 91.6 | 61.3 | 88.6 | 72.2 | 79.8 | 77.6 | 79.0 |
-| | | **Ours** | 100 | 100 | 100 | 100 | 100 | 100 | **100** |
+![Table1](/assets/img/dynamic3dgs/table1_panopticsports.png)
 
 _Table 1. PanopticSports dataset 결과._
 
@@ -219,13 +197,7 @@ _Figure 6. Ground-truth Comparison. 이 방법의 결과(파란색)와 ground-tr
 
 더 단순한 synthetic scene으로 구성된 Particle-NeRF dataset(20 train, 10 test camera)에서도 비교했다. 이 dataset에서 이 방법은 PSNR·SSIM·LPIPS 모두에서 거의 완벽에 가까운 점수를 달성한다.
 
-| Method | PSNR↑ | SSIM↑ | LPIPS↓ |
-|:---:|:---:|:---:|:---:|
-| TiNeuVox-S | 26.64 | 0.92 | 0.14 |
-| TiNeuVox | 27.28 | 0.91 | 0.13 |
-| InstantNGP | 24.69 | 0.91 | 0.12 |
-| Particle-NeRF | 27.47 | 0.94 | 0.08 |
-| **Ours** | **39.49** | **0.99** | **0.02** |
+![Table2](/assets/img/dynamic3dgs/table2_particle_nerf.png)
 
 _Table 2. Particle-NeRF dataset 결과._
 
@@ -236,16 +208,7 @@ _Figure 5. Visual comparison. Particle-NeRF dataset에서 Particle-NeRF(왼쪽)�
 
 Juggle sequence에서 방법의 각 구성 요소를 제거하는 ablation을 수행했다. 원본 3DGS 대비 추가된 6개 핵심 요소(rigidity loss, rotation loss, isometry loss, background loss, parameter fixing, forward propagation)를 하나씩, 그리고 모두 제거한 경우를 평가한다.
 
-| Exp | Description | PSNR↑ | 3D MTE↓ | 3D δ↑ | 2D MTE↓ | 2D δ↑ |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|
-| 0 | **Ours - Full** | **29.48** | **1.90** | **77.2** | **1.54** | **80.4** |
-| 1 | No $$\mathcal{L}^{\text{rigid}}$$ | 28.51 | 4.32 | 55.2 | 3.80 | 58.7 |
-| 2 | No $$\mathcal{L}^{\text{rot}}$$ | 29.43 | 1.91 | 76.6 | 1.55 | 79.8 |
-| 3 | No $$\mathcal{L}^{\text{iso}}$$ | 29.36 | 1.93 | 76.7 | 1.72 | 79.3 |
-| 4 | No $$\mathcal{L}^{\text{Bg}}$$ | 24.14 | 8.46 | 60.0 | 6.40 | 63.2 |
-| 5 | No Param Fixing | 27.14 | 30.7 | 57.7 | 19.15 | 58.8 |
-| 6 | No Forward Prop | 28.48 | 6.32 | 54.87 | 5.4 | 57.7 |
-| 7 | 3GS-O | 28.19 | 32.81 | 13.6 | 23.86 | 17.1 |
+![Table3](/assets/img/dynamic3dgs/table3_ablation.png)
 
 _Table 3. PanopticSports Juggle scene에 대한 ablation 결과._
 
