@@ -43,26 +43,28 @@ SAM은 zero-shot 2D segmentation의 foundation model이다. SAM의 2D mask를 Ne
 ### Radiance-based Scene Editing
 Radiance field 상의 장면 편집은 어렵다. Clip-NeRF, Object-NeRF, LaTeRF 등은 NeRF로 표현된 객체를 변경·완성하지만 단순 객체에 한정되고, bounding box 지정이나 물리 시뮬레이션 결합 방식도 있다. Gaussian Grouping은 discrete Gaussian의 group 단위 연산으로 clutter가 많은 장면에서도 효율적 편집을 지원한다.
 
-## Preliminaries: 3D Gaussian Splatting
+## Method
+
+### Preliminaries: 3D Gaussian Splatting
 
 3DGS는 장면을 다수의 3D Gaussian 집합으로 표현한다. 각 Gaussian은 centroid $\mathbf{p} \in \mathbb{R}^3$, 표준편차 형태의 3D size $\mathbf{s} \in \mathbb{R}^3$, rotation quaternion $\mathbf{q} \in \mathbb{R}^4$, opacity $\alpha \in \mathbb{R}$, 그리고 SH로 표현되는 색상 $\mathbf{c}$로 정의된다($S_{\Theta_i} = \{\mathbf{p}_i, \mathbf{s}_i, \mathbf{q}_i, \alpha_i, \mathbf{c}_i\}$). 이 3D Gaussian들을 2D 이미지 평면에 투영하여 pixel별로 미분 가능한 $\alpha$-blending 렌더링을 수행한다.
 
-## 3D Gaussian Grouping
+### 3D Gaussian Grouping
 
 Gaussian Grouping의 핵심은, Gaussian의 기존 속성(위치·색·opacity·크기)은 그대로 두고 색상 모델링과 유사한 형태의 Identity Encoding을 새로 추가하는 것이다. 이를 통해 각 Gaussian이 장면 안의 어떤 instance/stuff에 속하는지를 나타낸다.
 
 ![Fig2](/assets/img/gaussian-grouping/fig2_pipeline.png)
 _Fig 2. 파이프라인 3단계. (a) 각 view에 SAM을 everything 모드로 적용해 mask를 독립적으로 생성한다. (b) view 간 mask ID를 일치시키기 위해 universal temporal propagation 모델(zero-shot tracker)로 mask를 연결하여 일관된 multi-view segmentation을 만든다. (c) 준비된 입력으로 Gaussian의 모든 속성과 Identity Encoding을 differentiable rendering으로 함께 학습한다. Identity Encoding은 2D Identity Loss와 3D Regularization Loss로 supervise된다._
 
-### Anything Mask Input (a)
+#### Anything Mask Input (a)
 
 먼저 multi-view 이미지 각각에 SAM을 적용하여 everything 모드로 mask를 생성한다. 이 2D mask는 이미지마다 독립적으로 만들어지므로, 같은 객체라도 view마다 다른 ID를 갖는다. 따라서 이들을 3D 장면 상에서 동일 identity끼리 연결하고, 장면 전체의 총 instance 개수 $K$를 구해야 한다.
 
-### Identity Consistency across Views (b)
+#### Identity Consistency across Views (b)
 
 학습 중 cost-based linear assignment를 반복 계산하는 대신, multi-view 이미지를 시점이 점진적으로 변하는 하나의 video로 간주하여, 잘 학습된 zero-shot tracker로 mask를 propagate·association한다. 이 과정에서 총 mask identity 수 $K$도 얻는다. 저자들은 이 방식이 linear assignment 대비 60배 이상 빠르고, SAM의 dense·overlapping mask 상황에서 성능도 더 좋으며, tracker의 연결에 오류가 있어도 공유된 3D 표현 덕분에 학습 중 교정된다고 보고한다.
 
-### Identity Encoding and Rendering (c)
+#### Identity Encoding and Rendering (c)
 
 각 Gaussian에 학습 가능한 길이 16의 compact한 Identity Encoding $e_i$를 추가한다. instance ID는 시점에 무관하므로 SH degree를 0(DC 성분만)으로 두어 view-independent하게 모델링한다. 색상(SH)을 splatting하는 것과 동일하게, Identity Encoding도 $\alpha'$-blending으로 2D에 렌더링한다.
 
@@ -82,7 +84,7 @@ $$
 
 $J$는 3D-2D projection의 affine approximation에 대한 Jacobian, $W$는 world-to-camera 변환이다.
 
-### Grouping Loss (d)
+#### Grouping Loss (d)
 
 Grouping loss $\mathcal{L}_{\text{id}}$는 두 항으로 구성된다.
 
@@ -106,7 +108,7 @@ $$
 \end{equation}
 $$
 
-## Local Gaussian Editing
+### Local Gaussian Editing
 
 학습이 끝나면 각 Gaussian이 group ID를 가지므로, 특정 group의 Gaussian만 선택적으로 조작하여 전체 장면을 훼손하지 않고 편집할 수 있다. 핵심은 잘 학습된 대부분의 Gaussian은 freeze하고, 편집 대상과 관련된 소수의 기존/신규 Gaussian만 조정하는 것이다.
 
@@ -149,7 +151,7 @@ inpainting(0.153 vs SPIn-NeRF 0.126), style transfer(0.178 vs Instruct-NeRF2NeRF
 - 3D Regularization의 $k$: object removal 등에서 $k=5$가 품질과 효율의 균형이 가장 좋다(Fig 6, Table 2).
 - Grouping Loss: 2D Identity Loss와 3D Regularization Loss를 함께 쓰는 joint supervision이 가장 정확한 grouping을 만든다(Fig 7).
 
-## Limitation
+### Limitation
 
 동적(dynamic) 모델링과 시간에 따른 갱신이 없어, 현재 방법은 static 3D 장면에 한정된다. 저자들은 향후 완전 unsupervised 3D Gaussian grouping을 탐구할 여지를 남긴다.
 
