@@ -245,7 +245,7 @@ NeRF-Editing은 scene representation으로 NeuS를 써서 surface reconstruction
 | Fixed Covariance | 26.77 | 26.02 | 29.94 | 25.31 | 23.95 | 23.09 |
 | Rigid Covariance | 26.84 | 26.16 | 30.28 | 25.70 | 24.09 | 23.53 |
 | Fixed Harmonics | 26.83 | 26.02 | 30.87 | 25.75 | 25.09 | 23.69 |
-| Ours | 26.96 | 26.46 | 31.15 | 26.15 | 25.81 | 23.87 |
+| **Ours** | **26.96** | **26.46** | **31.15** | **26.15** | **25.81** | **23.87** |
 
 _Table 1. Lattice deformation benchmark의 PSNR(높을수록 좋음). Ours가 모든 케이스에서 우위._
 
