@@ -18,8 +18,7 @@ title: Minstaar # the main title
 
 tagline: Minseong Park # it will display as the subtitle
 
-description: >- # used by seo meta and the atom feed
-  논문을 한글로 번역하고 리뷰하는 블로그입니다.
+description: # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.

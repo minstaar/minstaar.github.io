@@ -161,6 +161,8 @@ _Table 1. 재렌더한 각 효과(motion blur / rolling shutter / pose noise)별
 
 재렌더 변형 실험(Table 1)에서는 각 효과(motion blur / RS / pose noise)에 맞는 보정을 켜고 Splatfacto baseline과 비교한다. 모든 시나리오에서 baseline을 크게 앞선다. 예: rolling shutter cozyroom에서 PSNR 19.21 → 35.84, factory에서 15.29 → 35.27. Rolling shutter 왜곡이 심할수록 보정 효과가 극적이다.
 
+다만 3DGS는 COLMAP의 SfM sparse point cloud로 Gaussian을 초기화하는데, 매우 blurry한 synthetic 데이터(Deblur-NeRF)에서는 COLMAP이 자주 실패한다. 이 경우 저자들은 별도 방식으로 초기 point cloud를 계산해 이를 보완한다.
+
 ![Fig2](/assets/img/gsmove/fig2_factory.png)
 _Fig 2. Synthetic factory 장면에서의 3DGS 복원 비교. rolling shutter 등 효과에 대해 baseline 대비 Ours가 왜곡을 크게 줄인다._
 
@@ -172,7 +174,7 @@ _Fig 4. 스마트폰 실제 데이터 예시. 위에서부터 COLMAP pose로 mot
 ![Table3](/assets/img/gsmove/table3_ablation.png)
 _Table 3. 스마트폰 실데이터에서의 PSNR ablation. motion blur·rolling shutter·pose·velocity·VIO 초기화 등 구성 요소별 기여를 비교한다._
 
-실제 스마트폰 데이터(Table 3)에서 ablation한 결과, motion blur 보정 / rolling shutter 보정 / pose 최적화 / velocity 최적화 / VIO velocity 초기화 모든 구성 요소가 PSNR에 긍정적으로 기여하며, 전체(Ours)가 최고 성능을 보인다.
+실제 데이터에서는 전처리 후 COLMAP(Nerfstudio 경유)으로 key frame pose와 intrinsic을 추정하는데, main 결과에는 시각 조건이 지나치게 어려워 COLMAP이 실패한 시퀀스는 제외하고 성공한 것만 포함했다. 실제 스마트폰 데이터(Table 3)에서 ablation한 결과, motion blur 보정 / rolling shutter 보정 / pose 최적화 / velocity 최적화 / VIO velocity 초기화 모든 구성 요소가 PSNR에 긍정적으로 기여하며, 전체(Ours)가 최고 성능을 보인다.
 
 CVR de-rolling 전처리와 비교하면 결과가 mixed다. Pixel 5에서는 CVR이 낫지만, S20에서는 나쁘고, RS readout이 작은 iPhone에서는 CVR이 확실히 더 나쁘다. CVR 출력에 artifact가 섞여 3DGS 성능을 해치기 때문으로, 정적 장면 RS 보정에서는 본 방법이 더 robust하다.
 
