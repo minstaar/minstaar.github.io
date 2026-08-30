@@ -1,5 +1,5 @@
 ---
-title: "Gaussian Splatting on the Move: Blur and Rolling Shutter Compensation for Natural Camera Motion"
+title: "[논문리뷰] Gaussian Splatting on the Move: Blur and Rolling Shutter Compensation for Natural Camera Motion"
 date: 2026-07-24 10:00:00 +0900
 categories: [논문리뷰, 3D Vision]
 tags: [3D Gaussian Splatting, Motion Blur, Rolling Shutter, Visual-Inertial Odometry, Deblurring, ECCV]

@@ -1,5 +1,5 @@
 ---
-title: "PhysGaussian: Physics-Integrated 3D Gaussians for Generative Dynamics"
+title: "[논문리뷰] PhysGaussian: Physics-Integrated 3D Gaussians for Generative Dynamics"
 date: 2026-07-24 11:00:00 +0900
 categories: [논문리뷰, 3D Vision]
 tags: [3D Gaussian Splatting, Material Point Method, Continuum Mechanics, Physics Simulation, Generative Dynamics, CVPR]

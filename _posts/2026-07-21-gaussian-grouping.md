@@ -1,5 +1,5 @@
 ---
-title: "Gaussian Grouping: Segment and Edit Anything in 3D Scenes"
+title: "[논문리뷰] Gaussian Grouping: Segment and Edit Anything in 3D Scenes"
 date: 2026-07-21 01:00:00 +0900
 categories: [논문리뷰, 3D Vision]
 tags: [Gaussian Splatting, 3D Segmentation, Scene Editing, SAM, Open-World, ECCV]

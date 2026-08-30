@@ -1,5 +1,5 @@
 ---
-title: "3D Gaussian Splatting for Real-Time Radiance Field Rendering"
+title: "[논문리뷰] 3D Gaussian Splatting for Real-Time Radiance Field Rendering"
 date: 2026-07-20 13:00:00 +0900
 categories: [논문리뷰, 3D Vision]
 tags: [3D Gaussian Splatting, Radiance Field, Novel View Synthesis, Neural Rendering, SIGGRAPH]

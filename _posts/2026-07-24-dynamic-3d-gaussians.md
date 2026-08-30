@@ -1,5 +1,5 @@
 ---
-title: "Dynamic 3D Gaussians: Tracking by Persistent Dynamic View Synthesis"
+title: "[논문리뷰] Dynamic 3D Gaussians: Tracking by Persistent Dynamic View Synthesis"
 date: 2026-07-24 12:00:00 +0900
 categories: [논문리뷰, 3D Vision]
 tags: [3D Gaussian Splatting, Dynamic Scene, 6-DOF Tracking, Point Tracking, Novel View Synthesis, 3DV]
