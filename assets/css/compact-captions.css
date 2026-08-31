@@ -1,0 +1,27 @@
+/* Opt-in for paper reviews: preserve image popups and paragraph spacing,
+   but give the image and its adjacent caption one predictable 6px gap. */
+.compact-figure-captions p > .img-link:has(+ em),
+.compact-figure-captions p > .img-link:has(+ br + em) {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 8px auto 0;
+  line-height: 0;
+}
+
+.compact-figure-captions p > img:has(+ em),
+.compact-figure-captions p > img:has(+ br + em) {
+  display: block;
+  margin: 8px auto 0;
+}
+
+.compact-figure-captions p > :is(img, .img-link) + br:has(+ em) {
+  display: none;
+}
+
+.compact-figure-captions p > :is(img, .img-link) + em,
+.compact-figure-captions p > :is(img, .img-link) + br + em {
+  display: block;
+  margin-top: 6px;
+  padding-top: 0;
+}

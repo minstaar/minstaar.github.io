@@ -13,6 +13,10 @@ script_includes:
 
 {% include toc-status.html %}
 
+{% if page.compact_captions %}
+  <link rel="stylesheet" href="{{ '/assets/css/compact-captions.css' | relative_url }}">
+{% endif %}
+
 <article class="px-1" data-toc="{{ enable_toc }}">
   <header>
     <h1 data-toc-skip>{{ page.title }}</h1>
@@ -62,7 +66,7 @@ script_includes:
     </dialog>
   {% endif %}
 
-  <div class="content">
+  <div class="content{% if page.compact_captions %} compact-figure-captions{% endif %}">
     {{ content }}
   </div>
 
