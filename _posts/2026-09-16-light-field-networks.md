@@ -137,9 +137,6 @@ $$
 \end{equation}
 $$
 
-![LFN의 360-degree light field와 novel-view rendering](/assets/img/light-field-networks/fig3_360_light_field.png)
-_Fig 3. LFN에서 얻은 room-scale light-field slice와 object의 local light field, novel RGB views 및 sparse depth maps._
-
 ### The Geometry of Light Field Networks
 
 #### Epipolar Plane Images
@@ -190,6 +187,9 @@ D\frac{\partial_t\mathbf{c}(s,t)}
 $$
 
 Neural implicit representation은 analytically differentiable하므로 finite difference 없이 이 derivative를 얻을 수 있다. 다만 식 (8)은 light-field derivative가 nonzero인 ray에서만 meaningful하다. 실제 구현은 ray 주변의 작은 $(s,t)$ neighborhood를 sample하고 gradient variance가 크면 depth를 invalid로 처리한다. 따라서 결과는 dense depth map이 아니라 confidence가 높은 위치의 sparse depth map이다.
+
+![LFN의 360-degree light field와 novel-view rendering](/assets/img/light-field-networks/fig3_360_light_field.png)
+_Fig 3. LFN에서 얻은 room-scale light-field slice와 object의 local light field, novel RGB views 및 sparse depth maps._
 
 ### Meta-Learning with Conditional Light Field Networks
 
