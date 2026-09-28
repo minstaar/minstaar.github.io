@@ -1,7 +1,7 @@
 /* Opt-in for paper reviews: preserve image popups and paragraph spacing,
    but give the image and its adjacent caption one predictable 6px gap. */
-.compact-figure-captions p > .img-link:has(+ em),
-.compact-figure-captions p > .img-link:has(+ br + em) {
+.content.compact-figure-captions p > a.popup.img-link:has(+ em),
+.content.compact-figure-captions p > a.popup.img-link:has(+ br + em) {
   display: block;
   width: fit-content;
   max-width: 100%;
