@@ -1,7 +1,6 @@
-/* Opt-in for paper reviews: preserve image popups and paragraph spacing,
-   but give the image and its adjacent caption one predictable 6px gap. */
-.content.compact-figure-captions p > a.popup.img-link:has(+ em),
-.content.compact-figure-captions p > a.popup.img-link:has(+ br + em) {
+/* Opt-in for paper reviews: center every attached figure/table consistently,
+   while preserving image popups and responsive sizing. */
+.content.compact-figure-captions p > a.popup.img-link {
   display: block;
   width: fit-content;
   max-width: 100%;
@@ -11,9 +10,10 @@
   line-height: 0;
 }
 
-.compact-figure-captions p > img:has(+ em),
-.compact-figure-captions p > img:has(+ br + em) {
+.content.compact-figure-captions p > img {
   display: block;
+  max-width: 100%;
+  height: auto;
   margin: 8px auto 0;
 }
 

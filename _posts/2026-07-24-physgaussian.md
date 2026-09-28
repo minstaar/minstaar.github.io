@@ -6,6 +6,7 @@ tags: [3D Gaussian Splatting, Material Point Method, Continuum Mechanics, Physic
 description: "CVPR 2024"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2311.12198)] [[Page](https://xpandora.github.io/PhysGaussian/)] [[Github](https://github.com/XPandora/PhysGaussian)]

@@ -6,6 +6,7 @@ tags: [3D Gaussian Splatting, Dynamic Scene, 6-DOF Tracking, Point Tracking, Nov
 description: "3DV 2024"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2308.09713)] [[Page](https://dynamic3dgaussians.github.io/)] [[Github](https://github.com/JonathonLuiten/Dynamic3DGaussians)]

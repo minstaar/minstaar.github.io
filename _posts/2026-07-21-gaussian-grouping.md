@@ -6,6 +6,7 @@ tags: [Gaussian Splatting, 3D Segmentation, Scene Editing, SAM, Open-World, ECCV
 description: "ECCV 2024"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2312.00732)] [[Github](https://github.com/lkeab/gaussian-grouping)]

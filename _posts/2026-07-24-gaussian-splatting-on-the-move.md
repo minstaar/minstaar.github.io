@@ -6,6 +6,7 @@ tags: [3D Gaussian Splatting, Motion Blur, Rolling Shutter, Visual-Inertial Odom
 description: "ECCV 2024"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2403.13327)] [[Page](https://spectacularai.github.io/3dgs-deblur/)] [[Github](https://github.com/SpectacularAI/3dgs-deblur)]

@@ -6,6 +6,7 @@ tags: [3D Gaussian Splatting, Radiance Field, Novel View Synthesis, Neural Rende
 description: "SIGGRAPH 2023"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2308.04079)] [[Page](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)] [[Github](https://github.com/graphdeco-inria/gaussian-splatting)]

@@ -6,6 +6,7 @@ tags: [3D Gaussian Splatting, Deblurring, Motion Blur, Bundle Adjustment, Novel 
 description: "ECCV 2024"
 math: true
 toc: true
+compact_captions: true
 ---
 
 > [[Paper](https://arxiv.org/abs/2403.11831)] [[Page](https://lingzhezhao.github.io/BAD-Gaussians/)] [[Github](https://github.com/WU-CVGL/BAD-Gaussians)]
