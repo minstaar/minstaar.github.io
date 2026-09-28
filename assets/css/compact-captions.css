@@ -1,6 +1,6 @@
 /* Opt-in for paper reviews: center every attached figure/table consistently,
    while preserving image popups and responsive sizing. */
-.content.compact-figure-captions p > a.popup.img-link {
+main .content.compact-figure-captions p > a.popup.img-link:not(.normal):not(.left):not(.right) {
   display: block;
   width: fit-content;
   max-width: 100%;
