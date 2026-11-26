@@ -27,3 +27,10 @@ main .content.compact-figure-captions p > a.popup.img-link:not(.normal):not(.lef
   margin-top: 6px;
   padding-top: 0;
 }
+
+/* Keep wide display equations inside their own scroll area on small screens. */
+.content.compact-figure-captions .math-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
